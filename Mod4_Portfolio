@@ -1,0 +1,102 @@
+# Step1: Creating a class with the required specifications
+class ItemToPurchase:
+
+	'''
+	The def __init__ thing really had me scratching my head. I don't recall learning about creating a class within
+	the ZyLearn reading, so I had to research via YouTube to ensure I was even doing this assignment correctly.
+
+	The __init__ method allows us to make a new class, but also load it immediately with values
+	'''
+
+	def __init__(self, item_name, item_price = 0.0, item_quantity = 0):
+		self.item_name = item_name
+		self.item_price = item_price
+		self.item_quantity = item_quantity
+
+# Also creating an additional function for the print_item_cost
+	def print_item_cost(self):
+
+		# We calculate the total_cost as price * quantity
+		total_cost = self.item_price * self.item_quantity
+
+		'''
+		We also add the print function here, as this function will be within a loop. So instead of printing it
+		twice, we can call the function once, and the loop will perform it twice 
+		'''
+
+		print(f'{self.item_name} {self.item_quantity} @ ${self.item_price:.2f} = ${total_cost:.2f}')
+
+'''
+Now we are creating a main function, which will serve to have the actual code we are providing for the assignment
+It's common practice to define the main() function as such, but it could honestly be named anything
+'''
+
+def main():
+
+	# Here we make a list called 'Items' and have it initialized, but don't have anything within it just yet
+	items = []
+
+	'''
+	Here is our actual loop. Range(2) is used because it will go from 0 to 1, and stop before 2.
+	Therefore 2 items to input as required!
+	'''
+
+	for i in range(2):
+
+		'''
+		As described above, the range() goes from 0 to 1, so we add +1 to each, and now we have 'Item 1:' instead of
+		'Item 0:'
+		'''
+
+		print(f'\nItem {i + 1}:')
+
+		# Now we get the actual inputs from the user. Each with their own type of input (str, int, float)
+		name = input("Enter the name of your item: ")
+		price = float(input("Enter the price of your item: $"))
+		quantity = int(input("Enter the quantity of your item: "))
+
+		'''
+		This is something I learned from Excel VBA, that I was pleased transferred to Python:
+		we create a new variable called 'item' to be used in the next section of code. But 'item' is defined as
+		the previous function 'ItemToPurchase' we already created, and we essentially tell Python what means what
+		because of how we created the function initially.
+		'''
+
+		item = ItemToPurchase(name, price, quantity)
+
+		# And now we add the data into the blank 'items[]' we created at the start of the program
+		items.append(item)
+
+	# Here is out final step, where we essentially print out a record of everything in a desired format
+	print()
+	print("TOTAL COST")
+
+	# We create the variable total_cost and set it to 0, because we will be adding the total values into it as we go
+	total_cost = 0
+
+	'''
+	for loop: for the item in the list of items[], we want to print the item cost with the function we made. And again
+	since we defined the print function with 'print_item_cost' we don't have to add any print functions here. Of course
+	we could have, but it wouldn't be as clean, and be more redundant	
+	'''
+
+	for item in items:
+
+		# With the item we were given, match it up with the memory, and output the print function as applicable
+		item.print_item_cost()
+
+		# Update the 'total_cost' to itself
+		total_cost += item.item_price * item.item_quantity
+
+	# Print the final cost
+	print(f'Total: ${total_cost:.2f}')
+
+'''
+This is a conditional statement that executes the program immediately (because I'm using PyCharm) and because the
+program is verifying that the script is being run as a main program / not called upon by another program via
+importing a module. Again, I learned this off of a YouTue video, and while it works, I honestly don't understand as to 
+the "why" of needing this...
+'''
+
+if __name__ == '__main__':
+	main()
