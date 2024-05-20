@@ -1,0 +1,88 @@
+# Nicholas R Crissie / CSC500 / Module 5 Critical Thinking Assignment (Part 1)
+
+years = int(input("Enter the number of years: "))
+
+# With the given numbers of years, we can automatically calculate the number of months this refers to
+tot_months = years * 12
+
+# We create variable 'rainfall_cum', and assign it to zero. This will be used within the loops
+rainfall_cum = 0
+
+'''
+We'll be using 'i' for the outer loop. I set 'i' to 0 just so we don't have to mess with the 'years' variable
+But it's worth noting I could have set it to 1, and changed the outer loop to become "i <= years"
+'''
+
+i = 0
+
+'''
+This is the outer loop. This loop counts what year we're on, and only goes up 1 after the inner loop is complete
+Then the inner loop executes again until completion
+'''
+
+while i < years:
+
+    '''
+    We set 'j' to 1 within the outer loop, because after the inner loop is complete, we want to do the inner loop
+    again if necessary
+    '''
+    # We set 'j' to 1 for readability purposes. But again, we could have set it to 0 if we wanted
+    j = 1
+
+    # This is the inner loop. This loop executes 12 times, and will loop again if the outer loop allows
+    while j < 13:
+
+        '''
+        We put a print on the current year, month for readability purposes. I got lost while debugging, and this 
+        helped me figure out where I was within the loop
+        '''
+
+        print(f'Year {i + 1}, Month {j}:')
+
+        # We create a third loop to ensure the input is valid. Because if it isn't the program crashes outright
+        while True:
+            try:
+                # We create the variable 'month' and set it to a float
+                # This is where the user inputs the rainfall for the month
+                month = float(input("Enter rainfall for the current month: "))
+                # Since the input is valid, we can break from this 'check' loop
+                break
+            except ValueError:
+                # If someone inputs a letter or anything other than a number, they see this message and try again
+                print("Invalid input. Please enter a number.")
+
+        # Then we take that month and add it to the rainfall_cum. Which equals itself plus the new input
+        rainfall_cum = rainfall_cum + month
+
+        # Once the loop completes thus far, we add one to 'j' and do it again
+        j += 1
+    # Once all iterations of the inner loop complete, we add 1 to 'i' and do it again if necessary
+    i += 1
+
+# Here we calculate the 'avg_rainfall' as we would with anything else, the sum divided by the num of months
+avg_rainfall = (rainfall_cum / tot_months)
+
+# Formatting only
+line = "###################################"
+
+print()
+print(line)
+print("###########   METRICS   ###########")
+print(line)
+print()
+# Here we print the total number of months
+print(f'Total months: {tot_months}\n')
+
+# Then we print the total of all the rainfall over the number of year(s)
+print(f'Total inches of rainfall: {rainfall_cum:.1f}\n')
+
+# And finally output the average across all months
+print(f'Average monthly rainfall: {avg_rainfall:.1f}\n')
+
+# More formatting
+print()
+print(line)
+print()
+
+# Allow the user to see their results, and press enter to complete / exit
+input('Press Enter to Exit...')
