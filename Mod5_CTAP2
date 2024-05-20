@@ -1,0 +1,44 @@
+# Nicholas R Crissie / CSC500 / Module 5 CTA Part 2
+
+# I wanted to define this function, because I've learned a decent amount, and instead of having to restart the program
+# if given an incorrect input, I wanted it to loop until an actual input was received
+def valid(user_input):
+    # We are ensuring the user_input is in fact a digit, instead of a letter or a symbol
+    return user_input.isdigit()
+
+def main():
+
+    while True:
+        # We take the actual user_input, but take it in as a string initially for the function above
+        user_input = input("How many books were purchased? ")
+
+        # Now we use the function. As long as the input is a digit, we proceed with the IF functions
+        if valid(user_input):
+            # Here we are actually converting the string to an integer, to then be used further on
+            books = int(user_input)
+
+            # If 0 to 1 book
+            if 0 <= books < 2:
+                print("You didn't earn any points")
+            # If 2 to 3 books
+            elif 2 <= books < 4:
+                print("You earned 5 points")
+            # If 4 to 5 books
+            elif 4 <= books < 6:
+                print("You earned 15 points")
+            # If 6 to 7 books
+            elif 6 <= books < 8:
+                print("You earned 30 points")
+            # If 8 or more books
+            elif books >= 8:
+                print("You earned 60 points")
+
+            # Then we kick ourselves out of the loop, because a condition has been met
+            break
+
+        # If the input is something other than a number, we output that the input is invalid and ask again
+        else:
+            print("Invalid input, please try again.")
+
+if __name__ == '__main__':
+    main()
