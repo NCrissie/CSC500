@@ -1,0 +1,46 @@
+# Nicholas Crissie / CSC500 / Module 7 CTA
+
+def main():
+    # First we want to create the value pairs for course numbers to room numbers
+    room_numbers = {
+        'CSC101': '3004',
+        'CSC102': '4501',
+        'CSC103': '6755',
+        'NET110': '1244',
+        'COM241': '1411'
+    }
+    # Then we want to create the course numbers to instructors dictionary
+    instructors = {
+        'CSC101': 'Haynes',
+        'CSC102': 'Alvarado',
+        'CSC103': 'Rich',
+        'NET110': 'Burke',
+        'COM241': 'Lee'
+    }
+    # Finally we create the meeting times dictionary
+    meeting_times = {
+        'CSC101': '8:00 a.m.',
+        'CSC102': '9:00 a.m.',
+        'CSC103': '10:00 a.m.',
+        'NET110': '11:00 a.m.',
+        'COM241': '1:00 p.m.'
+    }
+
+    # Now we check if the course actually exists. If it does, we follow the IF function, if it doesn't, we try again
+    # We also made a loop here just to ensure we have the program working until given an applicable input
+    while True:
+        # This is where we are going to take in the user-input. We utilize .strip() and .upper() to have a single input
+        # regardless of what the user may type for debugging.
+        course_number = input("Enter your course number: ").strip().upper()
+        if course_number in room_numbers:
+            print(f'Room Number: {room_numbers[course_number]}')
+            print(f'Instructor: {instructors[course_number]}')
+            print(f'Meeting Time: {meeting_times[course_number]}')
+            break
+        # If the course doesn't match, we output the following and try again
+        elif course_number not in room_numbers:
+            print("Course not found. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
